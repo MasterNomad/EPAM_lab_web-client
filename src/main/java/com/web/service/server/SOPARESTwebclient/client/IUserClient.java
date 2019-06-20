@@ -4,9 +4,9 @@ import user.wsdl.User;
 
 public interface IUserClient {
 
-    boolean createUser (User user);
+    User createUser (User user);
     User readUser (int id);
-    boolean updateUser (User user);
+    User updateUser (User user);
     boolean deleteUser (int id);
 
 }
