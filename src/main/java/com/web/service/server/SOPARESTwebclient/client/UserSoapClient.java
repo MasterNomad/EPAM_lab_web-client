@@ -8,27 +8,24 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import user.wsdl.*;
 
-import java.time.LocalTime;
-
 @Repository
 public class UserSoapClient implements IUserClient {
 
+    private final String URI = "http://localhost:9191/soap";
     @Autowired
     private SOAPConnector connector;
-
-    private final String URI = "http://localhost:9191/soap";
 
     @Override
     @CachePut(value = "users", key = "#user.id")
     public User createUser(User user) {
         CreateUserRequest request = new CreateUserRequest();
         request.setUser(user);
-        CRUUserResponse response = (CRUUserResponse)connector.callWebService(URI, request);
+        CRUUserResponse response = (CRUUserResponse) connector.callWebService(URI, request);
         return response.getUser();
     }
 
     @Override
-    @Cacheable("users")
+    //@Cacheable("users")
     public User readUser(int id) {
         ReadUserRequest request = new ReadUserRequest();
         request.setId(id);
@@ -41,7 +38,7 @@ public class UserSoapClient implements IUserClient {
     public User updateUser(User user) {
         UpdateUserRequest request = new UpdateUserRequest();
         request.setUser(user);
-        CRUUserResponse response = (CRUUserResponse)connector.callWebService(URI, request);
+        CRUUserResponse response = (CRUUserResponse) connector.callWebService(URI, request);
         return response.getUser();
     }
 

@@ -1,6 +1,5 @@
 package com.web.service.server.SOPARESTwebclient.client;
 
-import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import user.wsdl.User;
@@ -23,7 +22,7 @@ public class UserRestClient implements IUserClient {
 
     @Override
     public User updateUser(User user) {
-        restTemplate.put(URL+"/updateUser", user);
+        restTemplate.put(URL + "/updateUser", user);
         return user;
     }
 
