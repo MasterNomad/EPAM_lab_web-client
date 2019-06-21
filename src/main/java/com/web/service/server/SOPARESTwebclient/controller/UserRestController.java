@@ -6,32 +6,32 @@ import org.springframework.web.bind.annotation.*;
 import user.wsdl.User;
 
 @RestController
-public class UserController implements IUserClient {
+public class UserRestController implements IUserClient {
 
     @Autowired
-    private IUserClient userClient;
+    private IUserClient userRestClient;
 
     @Override
-    @PostMapping("/createUser")
+    @PostMapping("/createUserREST")
     public User createUser(User user) {
-        return userClient.createUser(user);
+        return userRestClient.createUser(user);
     }
 
     @Override
-    @GetMapping("/getUser/{id}")
+    @GetMapping("/getUserREST/{id}")
     public User readUser(@PathVariable int id) {
-        return userClient.readUser(id);
+        return userRestClient.readUser(id);
     }
 
     @Override
-    @PutMapping("/updateUser")
+    @PutMapping("/updateUserREST")
     public User updateUser(User user) {
-        return userClient.updateUser(user);
+        return userRestClient.updateUser(user);
     }
 
     @Override
-    @DeleteMapping("/deleteUser/{id}")
+    @DeleteMapping("/deleteUserREST/{id}")
     public boolean deleteUser(@PathVariable int id) {
-        return userClient.deleteUser(id);
+        return userRestClient.deleteUser(id);
     }
 }

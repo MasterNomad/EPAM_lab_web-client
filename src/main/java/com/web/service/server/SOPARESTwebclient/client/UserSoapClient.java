@@ -11,7 +11,7 @@ import user.wsdl.*;
 import java.time.LocalTime;
 
 @Repository
-public class UserClient implements IUserClient {
+public class UserSoapClient implements IUserClient {
 
     @Autowired
     private SOAPConnector connector;
@@ -30,7 +30,6 @@ public class UserClient implements IUserClient {
     @Override
     @Cacheable("users")
     public User readUser(int id) {
-        System.out.println("called " + LocalTime.now());
         ReadUserRequest request = new ReadUserRequest();
         request.setId(id);
         CRUUserResponse response = (CRUUserResponse) connector.callWebService(URI, request);
